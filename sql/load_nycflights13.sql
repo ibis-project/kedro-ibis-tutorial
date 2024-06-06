@@ -1,6 +1,3 @@
-ATTACH 'dbname=postgres user=postgres' AS pydata_london2024 (TYPE POSTGRES);
-
-INSERT INTO pydata_london2024.flights
-  FROM 'data/nycflights13_flights.parquet';
-INSERT INTO pydata_london2024.weather
-  FROM 'data/nycflights13_weather.parquet';
+ATTACH 'dbname=postgres user=postgres' AS postgres_db (TYPE POSTGRES);
+INSERT INTO postgres_db.flights FROM flights;
+INSERT INTO postgres_db.weather FROM weather;

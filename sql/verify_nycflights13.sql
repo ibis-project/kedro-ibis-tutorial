@@ -1,3 +1,3 @@
-SELECT 'flights' table, COUNT(*) n FROM flights UNION
-SELECT 'weather' table, COUNT(*) n FROM weather
-ORDER BY "table";
+SELECT 'flights' table_name, COUNT(*) FROM flights UNION
+SELECT 'weather' table_name, COUNT(*) FROM weather
+ORDER BY table_name;
