@@ -1,12 +1,12 @@
 {
   "dockerComposeFile": "compose.yaml",
-  "service": "ibis-tutorial",
+  "service": "kedro-ibis-tutorial",
   "runServices": ["postgres"],
   "forwardPorts": ["postgres:5432"],
   "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
   "customizations": {
     "codespaces": {
-      "openFiles": ["00 - Start Here.ipynb"]
+      "openFiles": ["00 - Welcome.ipynb"]
     },
     "vscode": {
       "settings": {
