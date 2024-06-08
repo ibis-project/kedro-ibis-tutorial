@@ -1,68 +1,66 @@
-import pandas as pd
+from __future__ import annotations
+
+from typing import TYPE_CHECKING
+
+import ibis
+
+if TYPE_CHECKING:
+    import ibis.expr.types as ir
 
 
-def _is_true(x: pd.Series) -> pd.Series:
-    return x == "t"
-
-
-def _parse_percentage(x: pd.Series) -> pd.Series:
-    x = x.str.replace("%", "")
-    x = x.astype(float) / 100
-    return x
-
-
-def _parse_money(x: pd.Series) -> pd.Series:
-    x = x.str.replace("$", "").str.replace(",", "")
-    x = x.astype(float)
-    return x
-
-
-def preprocess_companies(companies: pd.DataFrame) -> pd.DataFrame:
-    """Preprocesses the data for companies.
+def preprocess_flights(flights: ir.Table) -> ir.Table:
+    """Preprocesses the data for flights.
 
     Args:
-        companies: Raw data.
+        flights: Raw data.
     Returns:
-        Preprocessed data, with `company_rating` converted to a float and
-        `iata_approved` converted to boolean.
+        Preprocessed data, with `dep_time` converted to a time and
+        `arr_delay` and `air_time` converted to integers.
     """
-    companies["iata_approved"] = _is_true(companies["iata_approved"])
-    companies["company_rating"] = _parse_percentage(companies["company_rating"])
-    return companies
+    return flights.mutate(
+        dep_time=(
+            flights.dep_time.lpad(4, "0").substr(0, 2)
+            + ":"
+            + flights.dep_time.substr(-2, 2)
+            + ":00"
+        ).try_cast("time"),
+        arr_delay=flights.arr_delay.try_cast(int),
+        air_time=flights.air_time.try_cast(int),
+    )
 
 
-def preprocess_shuttles(shuttles: pd.DataFrame) -> pd.DataFrame:
-    """Preprocesses the data for shuttles.
-
-    Args:
-        shuttles: Raw data.
-    Returns:
-        Preprocessed data, with `price` converted to a float and `d_check_complete`,
-        `moon_clearance_complete` converted to boolean.
-    """
-    shuttles["d_check_complete"] = _is_true(shuttles["d_check_complete"])
-    shuttles["moon_clearance_complete"] = _is_true(shuttles["moon_clearance_complete"])
-    shuttles["price"] = _parse_money(shuttles["price"])
-    return shuttles
-
-
-def create_model_input_table(
-    shuttles: pd.DataFrame, companies: pd.DataFrame, reviews: pd.DataFrame
-) -> pd.DataFrame:
+def create_model_input_table(flights: ir.Table, weather: ir.Table) -> ir.Table:
     """Combines all data to create a model input table.
 
     Args:
-        shuttles: Preprocessed data for shuttles.
-        companies: Preprocessed data for companies.
-        reviews: Raw data for reviews.
+        flights: Preprocessed data for flights.
+        weather: Raw data for weather.
     Returns:
         Model input table.
-
     """
-    rated_shuttles = shuttles.merge(reviews, left_on="id", right_on="shuttle_id")
-    rated_shuttles = rated_shuttles.drop("id", axis=1)
-    model_input_table = rated_shuttles.merge(
-        companies, left_on="company_id", right_on="id"
+    return (
+        flights.mutate(
+            # Convert the arrival delay to a factor
+            # By default, PyTorch expects the target to have a Long datatype
+            arr_delay=ibis.ifelse(flights.arr_delay >= 30, 1, 0).cast("int64"),
+            # We will use the date (not date-time) in the recipe below
+            date=flights.time_hour.date(),
+        )
+        # Include the weather data
+        .inner_join(weather, ["origin", "time_hour"])
+        # Only retain the specific columns we will use
+        .select(
+            "dep_time",
+            "flight",
+            "origin",
+            "dest",
+            "air_time",
+            "distance",
+            "carrier",
+            "date",
+            "arr_delay",
+            "time_hour",
+        )
+        # Exclude missing data
+        .dropna()
     )
-    model_input_table = model_input_table.dropna()
-    return model_input_table

@@ -39,33 +39,37 @@
 # (transcoding), templating and a way to reuse arguments that are frequently repeated. See more here:
 # https://docs.kedro.org/en/stable/data/data_catalog.html
 
-companies:
-  type: pandas.CSVDataset
-  filepath: data/01_raw/companies.csv
+flights:
+  type: ibis.TableDataset
+  table_name: flights
+  connection:
+    backend: duckdb
+    database: "${oc.env:CODESPACE_VSCODE_FOLDER}/nycflights13.ddb"
 
-reviews:
-  type: pandas.CSVDataset
-  filepath: data/01_raw/reviews.csv
+weather:
+  type: ibis.TableDataset
+  table_name: weather
+  connection:
+    backend: duckdb
+    database: "${oc.env:CODESPACE_VSCODE_FOLDER}/nycflights13.ddb"
 
-shuttles:
-  type: pandas.ExcelDataset
-  filepath: data/01_raw/shuttles.xlsx
-  load_args:
-    engine: openpyxl
-
-preprocessed_companies:
-  type: pandas.ParquetDataset
-  filepath: data/02_intermediate/preprocessed_companies.pq
-
-preprocessed_shuttles:
-  type: pandas.ParquetDataset
-  filepath: data/02_intermediate/preprocessed_shuttles.pq
+preprocessed_flights:
+  type: ibis.TableDataset
+  table_name: preprocessed_flights
+  connection:
+    backend: duckdb
+    database: "${oc.env:CODESPACE_VSCODE_FOLDER}/nycflights13.ddb"
 
 model_input_table:
-  type: pandas.ParquetDataset
-  filepath: data/03_primary/model_input_table.pq
+  type: ibis.TableDataset
+  table_name: model_input_table
+  connection:
+    backend: duckdb
+    database: "${oc.env:CODESPACE_VSCODE_FOLDER}/nycflights13.ddb"
+  save_args:
+    materialized: table
 
-regressor:
+classifier:
   type: pickle.PickleDataset
-  filepath: data/06_models/regressor.pickle
+  filepath: data/06_models/classifier.pickle
   versioned: true
