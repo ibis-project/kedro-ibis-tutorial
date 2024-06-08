@@ -1,14 +1,14 @@
-# What was the largest female penguin (by body mass) on each island in the year 2008
+# Which airlines had the longest average arrival delays in June 2013?
 sol2 = (
-    penguins
-    .filter(
+    flights.filter(
         [
-            penguins.sex == "female",
-            penguins.year == 2008,
+            flights.month == 6,
+            flights.year == 2013,
         ]
     )
-    .group_by("island")
-    .agg(penguins.body_mass_g.max())
+    .group_by("carrier")
+    .agg(average_arr_delay=flights.arr_delay.try_cast(int).mean())
+    .order_by(ibis.desc("average_arr_delay"))
 )
 
 sol2

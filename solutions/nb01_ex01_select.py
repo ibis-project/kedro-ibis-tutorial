@@ -1,13 +1,24 @@
-# Convert the metric units to imperial, and drop the metric columns.
-penguins_imperial_select = penguins.select(
-    "species",
-    "island",
-    "sex",
+# Convert the imperial units to metric, and drop the imperial columns.
+flights_metric_select = flights.select(
     "year",
-    bill_length_in=penguins.bill_length_mm / 25.4,
-    bill_depth_in=penguins.bill_depth_mm / 25.4,
-    flipper_length_in=penguins.flipper_length_mm / 25.4,
-    body_weight_lb=penguins.body_mass_g / 453.6,
+    "month",
+    "day",
+    "dep_time",
+    "sched_dep_time",
+    "dep_delay",
+    "arr_time",
+    "sched_arr_time",
+    "arr_delay",
+    "carrier",
+    "flight",
+    "tailnum",
+    "origin",
+    "dest",
+    "air_time",
+    "hour",
+    "minute",
+    "time_hour",
+    distance_km=flights.distance * 1.609,
 )
 
-penguins_imperial_select
+flights_metric_select
