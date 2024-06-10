@@ -1,5 +1,5 @@
 services:
-  ibis-tutorial:
+  kedro-ibis-tutorial:
     build:
       context: ..
       dockerfile: .devcontainer/Dockerfile
