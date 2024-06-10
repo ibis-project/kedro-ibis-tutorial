@@ -3,9 +3,15 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 import ibis
+import ibis.selectors as s
+from ibis import _
 
 if TYPE_CHECKING:
     import ibis.expr.types as ir
+
+
+def _replace_na_values(t: ir.Table) -> ir.Table:
+    return t.mutate(s.across(s.of_type("string"), _.nullif("NA")))
 
 
 def preprocess_flights(flights: ir.Table) -> ir.Table:
@@ -17,15 +23,15 @@ def preprocess_flights(flights: ir.Table) -> ir.Table:
         Preprocessed data, with `dep_time` converted to a time and
         `arr_delay` and `air_time` converted to integers.
     """
-    return flights.mutate(
+    return _replace_na_values(flights).mutate(
         dep_time=(
-            flights.dep_time.lpad(4, "0").substr(0, 2)
+            _.dep_time.lpad(4, "0").substr(0, 2)
             + ":"
-            + flights.dep_time.substr(-2, 2)
+            + _.dep_time.substr(-2, 2)
             + ":00"
-        ).try_cast("time"),
-        arr_delay=flights.arr_delay.try_cast(int),
-        air_time=flights.air_time.try_cast(int),
+        ).cast("time"),
+        arr_delay=_.arr_delay.cast(int),
+        air_time=_.air_time.cast(int),
     )
 
 
