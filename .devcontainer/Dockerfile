@@ -9,4 +9,4 @@ RUN curl -LsSf https://astral.sh/uv/install.sh | sh
 
 COPY codespace_requirements.txt /
 
-RUN uv pip install --system -r codespace_requirements.txt
+RUN /root/.cargo/bin/uv pip install --system -r codespace_requirements.txt
