@@ -1,1 +1,0 @@
-ftw_packages.join(maintainers, "package_name").name.as_table().distinct()
