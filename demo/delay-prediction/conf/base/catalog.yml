@@ -69,3 +69,13 @@ classifier:
   type: pickle.PickleDataset
   filepath: data/06_models/classifier.pickle
   versioned: true
+
+X_test:
+  type: ibis.TableDataset
+  table_name: X_test
+  connection: ${_connection}
+
+y_test:
+  type: ibis.TableDataset
+  table_name: y_test
+  connection: ${_connection}
