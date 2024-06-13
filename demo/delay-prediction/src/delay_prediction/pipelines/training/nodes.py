@@ -13,7 +13,8 @@ if TYPE_CHECKING:
 
 
 def split_data(
-    flight_data: ir.Table
+    flight_data: ir.Table,
+    random_state: int = 42,
 ) -> tuple[ir.Table, ir.Column, ir.Table, ir.Column]:
     """Splits data into training and test sets.
 
@@ -30,7 +31,7 @@ def split_data(
 
     # Fix the random numbers by setting the seed
     # This enables the analysis to be reproducible when random numbers are used
-    random.seed(222)
+    random.seed(random_state)
 
     # Put 3/4 of the data into the training set
     random_key = str(random.getrandbits(256))
