@@ -1,5 +1,7 @@
+ibis-framework[duckdb,polars,examples]==9.0.0
+ibis-ml
 kedro~=0.19.6
-kedro-datasets[ibis-duckdb,ibis-postgres]>=3.0
+kedro-datasets[ibis-duckdb,ibis-postgres]~=3.0.1
 kedro-telemetry>=0.3.1
-kedro-viz>=6.7.0
+kedro-viz~=9.1.0
 scikit-learn~=1.0

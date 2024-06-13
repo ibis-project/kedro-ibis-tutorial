@@ -1,23 +1,20 @@
 from __future__ import annotations
 
-import logging
 import random
-from typing import TYPE_CHECKING, Dict, Tuple
+from typing import TYPE_CHECKING
 
 import ibis
 import ibis_ml as ml
 from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import r2_score
-from sklearn.model_selection import train_test_split
 from sklearn.pipeline import Pipeline
-
 
 if TYPE_CHECKING:
     import ibis.expr.types as ir
 
 
 def split_data(
-    flight_data: ir.Table
+    flight_data: ir.Table,
+    random_state: int = 42,
 ) -> tuple[ir.Table, ir.Column, ir.Table, ir.Column]:
     """Splits data into training and test sets.
 
@@ -34,7 +31,7 @@ def split_data(
 
     # Fix the random numbers by setting the seed
     # This enables the analysis to be reproducible when random numbers are used
-    random.seed(222)
+    random.seed(random_state)
 
     # Put 3/4 of the data into the training set
     random_key = str(random.getrandbits(256))
@@ -78,19 +75,3 @@ def train_model(X_train: ir.Table, y_train: ir.Column) -> Pipeline:
     pipe = Pipeline([("flights_rec", flights_rec), ("lr_mod", LogisticRegression())])
     pipe.fit(X_train, y_train)
     return pipe
-
-
-def evaluate_model(
-    pipe: Pipeline, X_test: ir.Table, y_test: ir.Column
-):
-    """Calculates and logs the coefficient of determination.
-
-    Args:
-        pipe: Trained model.
-        X_test: Testing data of independent features.
-        y_test: Testing data for price.
-    """
-    y_pred = pipe.predict(X_test)
-    score = r2_score(y_test, y_pred)
-    logger = logging.getLogger(__name__)
-    logger.info("Model has a coefficient R^2 of %.3f on test data.", score)
