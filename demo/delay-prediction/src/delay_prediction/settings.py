@@ -25,7 +25,6 @@ https://docs.kedro.org/en/stable/kedro_project_setup/settings.html."""
 
 # Class that manages how configuration is loaded.
 from kedro.config import OmegaConfigLoader  # noqa: E402
-from omegaconf.resolvers import oc
 
 CONFIG_LOADER_CLASS = OmegaConfigLoader
 # Keyword arguments to pass to the `CONFIG_LOADER_CLASS` constructor.
@@ -36,9 +35,6 @@ CONFIG_LOADER_ARGS = {
     #     "spark" : ["spark*/"],
     #     "parameters": ["parameters*", "parameters*/**", "**/parameters*"],
     # }
-    "custom_resolvers": {
-        "oc.env": oc.env,
-    },
 }
 
 # Class that manages Kedro's library components.
