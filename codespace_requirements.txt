@@ -6,8 +6,6 @@ aiohttp==3.9.5
     # via gcsfs
 aiosignal==1.3.1
     # via aiohttp
-altair==5.3.0
-    # via -r requirements.txt
 annotated-types==0.7.0
     # via pydantic
 antlr4-python3-runtime==4.9.3
@@ -23,8 +21,6 @@ appdirs==1.4.4
     # via
     #   kedro-telemetry
     #   pins
-appnope==0.1.4
-    # via ipykernel
 argon2-cffi==23.1.0
     # via jupyter-server
 argon2-cffi-bindings==21.2.0
@@ -83,12 +79,8 @@ click-default-group==1.2.4
     # via kedro-viz
 comm==0.2.2
     # via ipykernel
-contourpy==1.2.1
-    # via matplotlib
 cookiecutter==2.6.0
     # via kedro
-cycler==0.12.1
-    # via matplotlib
 debugpy==1.8.1
     # via ipykernel
 decorator==5.1.1
@@ -99,7 +91,7 @@ defusedxml==0.7.1
     # via nbconvert
 dnspython==2.6.1
     # via email-validator
-duckdb==0.10.2
+duckdb==1.0.0
     # via ibis-framework
 dynaconf==3.2.5
     # via kedro
@@ -113,8 +105,6 @@ fastapi-cli==0.0.4
     # via fastapi
 fastjsonschema==2.19.1
     # via nbformat
-fonttools==4.51.0
-    # via matplotlib
 fqdn==1.5.1
     # via jsonschema
 frozenlist==1.4.1
@@ -161,6 +151,8 @@ googleapis-common-protos==1.63.0
     # via google-api-core
 graphql-core==3.2.3
     # via strawberry-graphql
+greenlet==3.0.3
+    # via sqlalchemy
 h11==0.14.0
     # via
     #   httpcore
@@ -175,7 +167,7 @@ httpx==0.27.0
     #   jupyterlab
 humanize==4.9.0
     # via pins
-ibis-framework==9.0.0
+ibis-framework==9.1.0
     # via
     #   -r demo/delay-prediction/requirements.txt
     #   ibis-ml
@@ -210,7 +202,6 @@ jedi==0.19.1
     # via ipython
 jinja2==3.1.4
     # via
-    #   altair
     #   cookiecutter
     #   fastapi
     #   jupyter-server
@@ -228,7 +219,6 @@ jsonpointer==2.4
     # via jsonschema
 jsonschema==4.22.0
     # via
-    #   altair
     #   jupyter-events
     #   jupyterlab-server
     #   nbformat
@@ -278,8 +268,6 @@ kedro-telemetry==0.4.0
     # via -r demo/delay-prediction/requirements.txt
 kedro-viz==9.1.0
     # via -r demo/delay-prediction/requirements.txt
-kiwisolver==1.4.5
-    # via matplotlib
 lazy-loader==0.4
     # via kedro-datasets
 markdown-it-py==3.0.0
@@ -288,8 +276,6 @@ markupsafe==2.1.5
     # via
     #   jinja2
     #   nbconvert
-matplotlib==3.8.4
-    # via plotnine
 matplotlib-inline==0.1.7
     # via
     #   ipykernel
@@ -298,8 +284,6 @@ mdurl==0.1.2
     # via markdown-it-py
 mistune==3.0.2
     # via nbconvert
-mizani==0.11.2
-    # via plotnine
 more-itertools==10.2.0
     # via kedro
 multidict==6.0.5
@@ -323,18 +307,11 @@ notebook-shim==0.2.4
     # via jupyterlab
 numpy==1.26.4
     # via
-    #   altair
-    #   contourpy
     #   ibis-framework
-    #   matplotlib
-    #   mizani
     #   pandas
-    #   patsy
-    #   plotnine
     #   pyarrow
     #   scikit-learn
     #   scipy
-    #   statsmodels
 oauthlib==3.2.2
     # via requests-oauthlib
 omegaconf==2.3.0
@@ -347,7 +324,6 @@ overrides==7.7.0
     # via jupyter-server
 packaging==23.2
     # via
-    #   altair
     #   build
     #   ibis-framework
     #   ipykernel
@@ -356,20 +332,14 @@ packaging==23.2
     #   jupyterlab-server
     #   kedro-viz
     #   lazy-loader
-    #   matplotlib
     #   nbconvert
     #   plotly
     #   pytoolconfig
-    #   statsmodels
 pandas==2.2.2
     # via
-    #   altair
     #   ibis-framework
     #   kedro-viz
-    #   mizani
     #   pins
-    #   plotnine
-    #   statsmodels
 pandocfilters==1.5.1
     # via nbconvert
 parse==1.20.1
@@ -378,12 +348,8 @@ parso==0.8.4
     # via jedi
 parsy==2.1
     # via ibis-framework
-patsy==0.5.6
-    # via statsmodels
 pexpect==4.9.0
     # via ipython
-pillow==10.3.0
-    # via matplotlib
 pins==0.8.6
     # via ibis-framework
 platformdirs==4.2.1
@@ -391,11 +357,7 @@ platformdirs==4.2.1
     #   jupyter-core
     #   pytoolconfig
 plotly==5.22.0
-    # via
-    #   -r requirements.txt
-    #   kedro-viz
-plotnine==0.13.5
-    # via -r requirements.txt
+    # via kedro-viz
 pluggy==1.5.0
     # via kedro
 polars==0.20.23
@@ -446,8 +408,6 @@ pygments==2.18.0
     #   ipython
     #   nbconvert
     #   rich
-pyparsing==3.1.2
-    # via matplotlib
 pyproject-hooks==1.1.0
     # via build
 python-dateutil==2.9.0.post0
@@ -455,7 +415,6 @@ python-dateutil==2.9.0.post0
     #   arrow
     #   ibis-framework
     #   jupyter-client
-    #   matplotlib
     #   pandas
     #   strawberry-graphql
 python-dotenv==1.0.1
@@ -531,11 +490,7 @@ ruamel-yaml-clib==0.2.8
 scikit-learn==1.5.0
     # via -r demo/delay-prediction/requirements.txt
 scipy==1.13.0
-    # via
-    #   mizani
-    #   plotnine
-    #   scikit-learn
-    #   statsmodels
+    # via scikit-learn
 secure==0.3.0
     # via kedro-viz
 send2trash==1.8.3
@@ -546,7 +501,6 @@ six==1.16.0
     # via
     #   asttokens
     #   bleach
-    #   patsy
     #   python-dateutil
     #   rfc3339-validator
 smmap==5.0.1
@@ -565,8 +519,6 @@ stack-data==0.6.3
     # via ipython
 starlette==0.37.2
     # via fastapi
-statsmodels==0.14.2
-    # via plotnine
 strawberry-graphql==0.234.2
     # via kedro-viz
 tenacity==8.2.3
@@ -584,9 +536,7 @@ tinycss2==1.3.0
 toml==0.10.2
     # via kedro
 toolz==0.12.1
-    # via
-    #   altair
-    #   ibis-framework
+    # via ibis-framework
 toposort==1.10
     # via kedro-viz
 tornado==6.4
