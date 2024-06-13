@@ -89,8 +89,6 @@ cookiecutter==2.6.0
     # via kedro
 cycler==0.12.1
     # via matplotlib
-db-dtypes==1.2.0
-    # via ibis-framework
 debugpy==1.8.1
     # via ipykernel
 decorator==5.1.1
@@ -102,9 +100,7 @@ defusedxml==0.7.1
 dnspython==2.6.1
     # via email-validator
 duckdb==0.10.2
-    # via
-    #   -r demo/delay-prediction/requirements.txt
-    #   ibis-framework
+    # via ibis-framework
 dynaconf==3.2.5
     # via kedro
 email-validator==2.1.1
@@ -140,8 +136,6 @@ gitpython==3.1.41
     # via kedro
 google-api-core==2.19.0
     # via
-    #   google-cloud-bigquery
-    #   google-cloud-bigquery-storage
     #   google-cloud-core
     #   google-cloud-storage
 google-auth==2.29.0
@@ -149,23 +143,12 @@ google-auth==2.29.0
     #   gcsfs
     #   google-api-core
     #   google-auth-oauthlib
-    #   google-cloud-bigquery
-    #   google-cloud-bigquery-storage
     #   google-cloud-core
     #   google-cloud-storage
-    #   pydata-google-auth
 google-auth-oauthlib==1.2.0
-    # via
-    #   gcsfs
-    #   pydata-google-auth
-google-cloud-bigquery==3.24.0
-    # via ibis-framework
-google-cloud-bigquery-storage==2.25.0
-    # via ibis-framework
+    # via gcsfs
 google-cloud-core==2.4.1
-    # via
-    #   google-cloud-bigquery
-    #   google-cloud-storage
+    # via google-cloud-storage
 google-cloud-storage==2.16.0
     # via gcsfs
 google-crc32c==1.5.0
@@ -173,21 +156,11 @@ google-crc32c==1.5.0
     #   google-cloud-storage
     #   google-resumable-media
 google-resumable-media==2.7.0
-    # via
-    #   google-cloud-bigquery
-    #   google-cloud-storage
+    # via google-cloud-storage
 googleapis-common-protos==1.63.0
-    # via
-    #   google-api-core
-    #   grpcio-status
+    # via google-api-core
 graphql-core==3.2.3
     # via strawberry-graphql
-grpcio==1.64.1
-    # via
-    #   google-api-core
-    #   grpcio-status
-grpcio-status==1.62.2
-    # via google-api-core
 h11==0.14.0
     # via
     #   httpcore
@@ -352,7 +325,6 @@ numpy==1.26.4
     # via
     #   altair
     #   contourpy
-    #   db-dtypes
     #   ibis-framework
     #   matplotlib
     #   mizani
@@ -377,8 +349,6 @@ packaging==23.2
     # via
     #   altair
     #   build
-    #   db-dtypes
-    #   google-cloud-bigquery
     #   ibis-framework
     #   ipykernel
     #   jupyter-server
@@ -394,7 +364,6 @@ packaging==23.2
 pandas==2.2.2
     # via
     #   altair
-    #   db-dtypes
     #   ibis-framework
     #   kedro-viz
     #   mizani
@@ -438,15 +407,11 @@ prometheus-client==0.20.0
 prompt-toolkit==3.0.43
     # via ipython
 proto-plus==1.23.0
-    # via
-    #   google-api-core
-    #   google-cloud-bigquery-storage
+    # via google-api-core
 protobuf==4.25.3
     # via
     #   google-api-core
-    #   google-cloud-bigquery-storage
     #   googleapis-common-protos
-    #   grpcio-status
     #   proto-plus
 psutil==5.9.8
     # via ipykernel
@@ -459,9 +424,7 @@ ptyprocess==0.7.0
 pure-eval==0.2.2
     # via stack-data
 pyarrow==16.0.0
-    # via
-    #   db-dtypes
-    #   ibis-framework
+    # via ibis-framework
 pyarrow-hotfix==0.6
     # via ibis-framework
 pyasn1==0.6.0
@@ -478,8 +441,6 @@ pydantic==2.7.3
     #   kedro-viz
 pydantic-core==2.18.4
     # via pydantic
-pydata-google-auth==1.8.2
-    # via ibis-framework
 pygments==2.18.0
     # via
     #   ipython
@@ -492,7 +453,6 @@ pyproject-hooks==1.1.0
 python-dateutil==2.9.0.post0
     # via
     #   arrow
-    #   google-cloud-bigquery
     #   ibis-framework
     #   jupyter-client
     #   matplotlib
@@ -535,7 +495,6 @@ requests==2.31.0
     #   cookiecutter
     #   gcsfs
     #   google-api-core
-    #   google-cloud-bigquery
     #   google-cloud-storage
     #   jupyterlab-server
     #   kedro-telemetry
@@ -581,8 +540,6 @@ secure==0.3.0
     # via kedro-viz
 send2trash==1.8.3
     # via jupyter-server
-setuptools==70.0.0
-    # via pydata-google-auth
 shellingham==1.5.4
     # via typer
 six==1.16.0
