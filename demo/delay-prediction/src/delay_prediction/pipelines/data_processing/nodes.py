@@ -2,7 +2,6 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-import ibis
 import ibis.selectors as s
 from ibis import _
 
@@ -47,8 +46,7 @@ def create_model_input_table(flights: ir.Table, weather: ir.Table) -> ir.Table:
     return (
         flights.mutate(
             # Convert the arrival delay to a factor
-            # By default, PyTorch expects the target to have a Long datatype
-            arr_delay=ibis.ifelse(flights.arr_delay >= 30, 1, 0).cast("int64"),
+            arr_delay=flights.arr_delay >= 30,
             # We will use the date (not date-time) in the recipe below
             date=flights.time_hour.date(),
         )
