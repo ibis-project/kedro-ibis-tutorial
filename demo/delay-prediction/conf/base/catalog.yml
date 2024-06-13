@@ -65,7 +65,7 @@ model_input_table:
   save_args:
     materialized: table
 
-pipe:
+classifier:
   type: pickle.PickleDataset
-  filepath: data/06_models/pipe.pickle
+  filepath: data/06_models/classifier.pickle
   versioned: true

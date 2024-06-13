@@ -7,7 +7,7 @@ def create_pipeline(**kwargs) -> Pipeline:
     return pipeline([
         node(
             func=evaluate_model,
-            inputs=["pipe", "X_test", "y_test"],
+            inputs=["classifier", "X_test", "y_test"],
             outputs=None,
         ),
     ])
