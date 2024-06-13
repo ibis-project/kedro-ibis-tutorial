@@ -1,0 +1,15 @@
+_root_folder: /workspaces/kedro-ibis-tutorial
+
+_connection:
+  backend: duckdb
+  database: "${_root_folder}/nycflights13.ddb"
+
+flights:
+  type: ibis.TableDataset
+  table_name: flights
+  connection: ${_connection}
+
+weather:
+  type: ibis.TableDataset
+  table_name: weather
+  connection: ${_connection}
