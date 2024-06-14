@@ -1,4 +1,4 @@
-ibis-framework[duckdb,polars,examples]==9.0.0
+ibis-framework[duckdb,polars,examples]~=9.1
 ibis-ml
 kedro~=0.19.6
 kedro-datasets[ibis-duckdb,ibis-postgres]~=3.0.1
