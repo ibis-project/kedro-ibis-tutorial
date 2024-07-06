@@ -57,8 +57,9 @@ cachetools==5.3.3
     # via
     #   google-auth
     #   kedro
-certifi==2024.2.2
+certifi==2024.7.4
     # via
+    #   -r requirements.txt
     #   httpcore
     #   httpx
     #   requests

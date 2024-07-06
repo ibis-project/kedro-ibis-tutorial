@@ -1,3 +1,4 @@
 -r demo/delay-prediction/requirements.txt
 
+certifi>=2024.07.04
 jupyterlab==4.1.8
